@@ -30,4 +30,7 @@ jobs:
           path: ./allure-results
           
       - name: Checking
-        run: ls -a
+        run: |
+          ls -a
+          cd ./allure-results
+          ls
