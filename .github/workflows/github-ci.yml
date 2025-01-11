@@ -9,6 +9,9 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
+      - name: Set up docker compose
+        uses: docker/compose-action@v2
+        
       - name: Run infra
         run: |
           ./run-app-local.sh
