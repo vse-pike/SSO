@@ -1,6 +1,6 @@
 on:
   pull_request:
-    types: [opened]
+    types: [opened, synchronize]
 
 jobs:
   integration-tests:
@@ -20,4 +20,11 @@ jobs:
         run: |
           mkdir ./allure-results
           export CI=true
-          ./run-test.sh
+          ./run-tests.sh
+          
+      - name: Upload Allure results
+        if: always()
+        uses: actions/upload-artifact@v3
+        with:
+          name: allure-results
+          path: ./allure-results

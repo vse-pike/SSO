@@ -16,18 +16,9 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Content Include=".docker\integration-tests.Dockerfile" />
       <Content Include=".docker\sso-app.Dockerfile" />
     </ItemGroup>
-
-    <ItemGroup>
-      <_ContentIncludedByDefault Remove="wiremock\test-server\mappings\mock-token-non-exist.json" />
-      <_ContentIncludedByDefault Remove="wiremock\test-server\mappings\mock-token-success.json" />
-      <_ContentIncludedByDefault Remove="wiremock\test-server\mappings\mock-token-unauthorized.json" />
-      <_ContentIncludedByDefault Remove="wiremock\test-server\mappings\mock-token-wrong-auth.json" />
-      <_ContentIncludedByDefault Remove="wiremock\test-server\__files\mock-token.json" />
-    </ItemGroup>
-
+    
     <ItemGroup>
       <None Include=".github\workflows\github-ci.yml" />
     </ItemGroup>
