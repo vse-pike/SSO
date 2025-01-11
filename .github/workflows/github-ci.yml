@@ -28,10 +28,3 @@ jobs:
         with:
           name: allure-results
           path: ./allure-results
-          
-      - name: Checking
-        if: always()
-        run: |
-          ls -a
-          cd ./allure-results
-          ls
