@@ -1,0 +1,8 @@
+/obj/
+/bin/
+/.idea/
+/integration-tests/.idea/
+/integration-tests/.venv/
+/integration-tests/__pycache__/
+.idea
+.gitignore

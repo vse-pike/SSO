@@ -1,0 +1,50 @@
+version: "3.9"
+
+services:
+  sso-app:
+    container_name: sso-app
+    depends_on: [ sso-postgres ]
+    build:
+      context: .
+      dockerfile: .docker/sso-app.Dockerfile
+    ports:
+      - "8080:8080"
+      - "8082:8082"
+    profiles:
+      - infra
+    environment:
+      SSO: 'UrO_9D]gJxJZ97'
+    networks:
+      - net
+  sso-postgres:
+    container_name: sso-postgres
+    image: postgres:15.3
+    environment:
+      POSTGRES_DB: "sso-postgres"
+      POSTGRES_USER: "postgres"
+      POSTGRES_PASSWORD: "postgres"
+    ports:
+      - "5432:5432"
+    profiles:
+      - infra
+    networks:
+      - net
+  sso-integration-tests:
+    container_name: sso-integration-tests
+    build:
+      context: .
+      dockerfile: .docker/integration-tests.Dockerfile
+    environment:
+      PUBLIC_API_URL: "http://sso-app:8080"
+      INTERNAL_API_URL: "http://sso-app:8082"
+      CONNECTION_STRING: "postgresql://postgres:postgres@sso-postgres:5432/sso-postgres"
+      CI: $CI
+    profiles:
+      - tests
+    volumes:
+      - ./allure-results:/integration-tests/allure-results
+    networks:
+      - net
+
+networks:
+  net:
