@@ -28,3 +28,6 @@ jobs:
         with:
           name: allure-results
           path: ./allure-results
+          
+      - name: Checking
+        run: ls -a
