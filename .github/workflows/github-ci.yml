@@ -24,4 +24,4 @@ jobs:
         run: |
           mkdir ./allure-results
           export CI=true
-          ./run-test.sh
+          ./run-tests.sh
